@@ -8,11 +8,10 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class Main {
-    private static final String ROOT_DIR = "src/test/resources/boundaries/";
-    private static final String PROPERTIES_DIR = "properties/";
+    public static final String ROOT_DIR = "src/test/resources/boundaries/";
     private static final String IMAGES_DIR = "images/";
 
-    private Properties properties;
+    private ImageProperties properties;
     private BufferedImage image;
 
     public static void main(String[] args) {
@@ -20,44 +19,51 @@ public class Main {
             usage();
             System.exit(100);
         }
-        Main main = new Main();
-        main.readPropertiesFile(args[0]);
-        main.readImageFile(args[0]);
+        Main main = new Main(args[0]);
         main.processImage();
     }
 
+    public Main(String projectname) {
+        properties = new ImageProperties(projectname);
+        readImageFile(projectname);
+    }
+
     private void processImage() {
+        int minX = Integer.MAX_VALUE;
+        int maxX = 0;
+        int minY = Integer.MAX_VALUE;
+        int maxY = 0;
         for (int x = 0; x < image.getWidth(); ++x) {
             for (int y = 0; y < image.getHeight(); ++y) {
                 int rgb = image.getRGB(x,y);
                 if (rgb != -1) {
-                    System.out.println(x+"/"+y+": "+rgb);
+                    if (minX > x) {
+                        minX = x;
+                    }
+                    if (maxX < x) {
+                        maxX = x;
+                    }
+                    if (minY > y) {
+                        minY = y;
+                    }
+                    if (maxY < y) {
+                        maxY = y;
+                    }
                 }
             }
         }
+        properties.setImageBounds(image.getWidth(), image.getHeight(), minX, maxX, minY, maxY);
+        System.out.println("x: "+minX+"-"+maxX+" y:"+minY+"-"+maxY);
     }
 
     private void readImageFile(String filename) {
-        String propertiesFilename = ROOT_DIR+IMAGES_DIR+filename+".bmp";
-        File imageFile = new File(propertiesFilename);
+        String imageFilename = ROOT_DIR+IMAGES_DIR+filename+".bmp";
+        File imageFile = new File(imageFilename);
         try {
             image = ImageIO.read(imageFile);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        System.out.println(image.getHeight());
-    }
-
-    private void readPropertiesFile(String filename) {
-        String propertiesFilename = ROOT_DIR+PROPERTIES_DIR+filename+".properties";
-        File propertiesFile = new File(propertiesFilename );
-        properties = new Properties();
-        try {
-            properties.load(new FileInputStream(propertiesFile));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        System.out.println(properties.getProperty("name"));
     }
 
     private static void usage() {

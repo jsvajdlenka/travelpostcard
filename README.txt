@@ -1,6 +1,8 @@
 Project postcard
 
 Features
+Vytvoriť algoritmus na interpolaciu hranic oblasti pomocou stvorcov na ulozenie map pre krajiny a oblasti
+
 
 Platba za registráciu pohľadnice pre turisticky zaujímavé miesto.
 Cestovateľ po príchode na súradnice získa automaticky 3 pohľadnice, ktoré je prípadne možné niekomu poslať.
@@ -28,7 +30,6 @@ Možnosť vytvoriť pohľadnice grafikom z ľudu. V tom prípade provízia za pr
 Okraj pohľadnice rám podľa krajiny. Farba podľa kontinentu.
 Grafika suvenírov môže byť zadaná ako súťaž na fóre
 Vytvoriť algoritmus na kontrolu originality na základe čísla pohľadnice.
-Vytvoriť algoritmus na interpolaciu hranic oblasti pomocou stvorcov na ulozenie map pre krajiny a oblasti
 
 Domains
 Wetravelcard.com
