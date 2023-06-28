@@ -26,7 +26,7 @@ public class ImageProperties {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            System.out.println(projectname + "properties was read");
+            System.out.println(projectname + " properties was read");
         }
     }
 
@@ -39,7 +39,7 @@ public class ImageProperties {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        System.out.println(projectname + "properties was saved");
+        System.out.println(projectname + " properties was saved");
     }
 
     public void setImageBounds(int width, int height, int minX, int maxX, int minY, int maxY) {
