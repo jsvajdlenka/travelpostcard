@@ -2,6 +2,7 @@ Project postcard
 
 Features
 Vytvoriť algoritmus na interpolaciu hranic oblasti pomocou stvorcov na ulozenie map pre krajiny a oblasti
+https://www.geonames.org/ stiahnut xml s coordinates pre krajinu - hranica NSWE pouzit pre vsetky objekty
 
 
 Platba za registráciu pohľadnice pre turisticky zaujímavé miesto.
